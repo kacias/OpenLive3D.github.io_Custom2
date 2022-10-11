@@ -168,9 +168,12 @@ function updateBody(keys){
 
         //결과물 출력 (몸) 
         console.log("======================<head/neck/chest rotation result>========================")
-        console.log(`head: ${head}`);
-        console.log(`neck: ${neck}`);
-        console.log(`chest:${chest}`);
+        console.log("head:");
+        console.log(head);
+        console.log("neck:");
+        console.log(neck);
+        console.log("chest:");
+        console.log(chest);
 
         //결과물 출력 (손)
         console.log("=========<arm rotation result>=======")
