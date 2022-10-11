@@ -172,6 +172,8 @@ function updateBody(keys){
         console.log(`neck: ${neck}`);
         console.log(`chest:${chest}`);
 
+        //결과물 출력 (손)
+        console.log("=========<arm rotation result>=======")
         // left right arm
         if(getCMV('HAND_TRACKING')){
             for(let i = 0; i < 2; i ++){
@@ -187,10 +189,9 @@ function updateBody(keys){
                     Object.keys(armEuler).forEach(function(armkey){
                         let armobj = Ch.getNormalizedBoneNode(prefix + armkey).rotation;
                         armobj.copy(armEuler[armkey]);
-
-                    //결과물 출력 (손)
-                    console.log("=========<arm rotation result>=======")
-                    console.log(armobj);
+                        
+                        //손 출력
+                        console.log(armEuler[armkey]);
 
                     });
                 }else{
