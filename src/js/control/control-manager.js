@@ -175,6 +175,9 @@ function updateBody(keys){
         console.log("chest:");
         console.log(chest);
 
+
+        //================================================================================
+        //현재는 아래 부분이 왼쪽/오른쪽 손 위치를 넘겨서 IK로 계산하는 코드 (이걸 불활성화하고 위의 손,목, 가슴처럼 yaw, pitch, roll로 직접 계산)
         //결과물 출력 (손)
         console.log("=========<arm rotation result>=======")
         // left right arm
@@ -205,6 +208,34 @@ function updateBody(keys){
             setDefaultPose(currentVrm);
         }
     }
+    //======================================================================================
+    //위에 코드 대신 Shoulder, Elbow, Hand 총 6개의 각도를 VRM roation 값으로 직접 입력
+    //총 6개의 계산해야 할 듯. LeftHand, LeftLowerArm, LeftShoulder, RightHand, RightLowerArm, RightShoulder
+
+    console.log("+++++++++++++++++++++++++++++++++++++"); 
+    console.log(Tvrmshbn);
+
+    /*
+    // LeftHand
+    let LeftHand = Ch.getNormalizedBoneNode(Tvrmshbn.LeftHand).rotation;
+    LeftHand.set(radLimit(keys['LeftHand_pitch'] * getCMV('LEFTHAND_RATIO')),
+        radLimit(keys['LeftHand_yaw'] * getCMV('LEFTHAND_RATIO') - leanRatio * 0.3),
+        radLimit(keys['LeftHand_roll'] * getCMV('LEFTHAND_RATIO') - tiltRatio * 0.3));
+
+    ......
+
+    */
+
+    // keys['LeftHand_pitch'], keys['LeftHand_yaw'], keys['LeftHand_roll']
+    // 위의 3개 값은 landmark/posekey.js에서 계산 
+    //get CMV 값들은 config-manager.js에서 정의 
+    //LeanRatio, tiltRatio는 없어도 될 듯(?)
+    
+
+
+    //=======================================================================================
+
+
 }
 
 function updatePosition(keys){
