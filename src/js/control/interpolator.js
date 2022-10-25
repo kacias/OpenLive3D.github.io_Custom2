@@ -80,6 +80,8 @@ function addIC(t){
         interCheck[t] = 1;
     }
 }
+
+//여기서 info 값을 취합 
 function getInfo(){
     let momentumFactor = getCMV("MOMENTUM_RATIO");
     let lasTime = curTimeInfo["time"];
@@ -123,5 +125,8 @@ function getInfo(){
     let maxVIDura = getCMV("MAX_VI_DURATION");
     lasTimeDiff = Math.min(maxVIDura, Math.max(minVIDura, difTime));
     curTimeInfo["info"] = sumInfoDiff(curTimeInfo["info"], lasInfoDiff);
+
+
+
     return curTimeInfo["info"];
 }

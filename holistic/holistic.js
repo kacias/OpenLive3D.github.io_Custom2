@@ -2856,7 +2856,7 @@
                                         d = "pose_landmark_heavy.tflite";
                                         break;
                                     default:
-                                        d = "pose_landmark_lite.tflite"
+                                        d = "pose_landmark_lite.tflite"  //여기 모델을 onnx 모델로 추후 변환
                                 }
                                 e =
                                     "third_party/mediapipe/modules/pose_landmark/" + d;

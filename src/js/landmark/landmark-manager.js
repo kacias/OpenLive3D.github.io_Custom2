@@ -1,3 +1,4 @@
+//미디어 파이프 특징점 위치 
 const MARKCOLOR = {
     "head" : "#f00", // red
     "righteye" : "#7ff", // cyan
@@ -25,6 +26,7 @@ const MARKCOLOR = {
     "rightpinky": "#070", // dark-green
 };
 
+//이 값이 최종적으로 사용된다. 여기에 데이터를 넣어야 한다. 
 function getDefaultInfo(){
     return {
         "roll": 0, "pitch": 0, "yaw": 0,
@@ -47,6 +49,12 @@ function getDefaultInfo(){
         "leftPitch": 0, "rightPitch": 0,
         "leftYaw": 0, "rightYaw": 0,
         "leftSpread": 0, "rightSpread": 0,
+
+        //내가 추가한 값 (이값을 어디선가 계산해야 함) 
+        "leftShoulder_pitch": 0.0,
+        "leftShoulder_yaw": 0.0, 
+        "leftShoulder_roll": 0.0
+
     };
 }
 

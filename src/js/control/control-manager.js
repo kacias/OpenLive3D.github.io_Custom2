@@ -13,6 +13,8 @@ let cm = getCM(); // required for ConfigManager Setup
 let currentVrm = undefined;
 let defaultXYZ = undefined;
 
+let internal_counter = 0.0; 
+
 // initialize / reinitialize VRM
 function loadVRM(vrmurl){
     loadVRMModel(vrmurl,
@@ -145,6 +147,10 @@ function updateMouthEyes(keys){
 //========================================================================================
 //본별 회전값 전달 
 function updateBody(keys){
+
+    // console.log("*********************************************")
+    // console.log(keys);
+
     let updateTime = new Date().getTime();
     if(currentVrm){
         let Ch = currentVrm.humanoid;
@@ -166,16 +172,104 @@ function updateBody(keys){
             radLimit(keys['yaw'] * getCMV('CHEST_RATIO') + leanRatio),
             radLimit(keys['roll'] * getCMV('CHEST_RATIO') + tiltRatio));
 
-        //결과물 출력 (몸) 
-        console.log("======================<head/neck/chest rotation result>========================")
-        console.log("head:");
-        console.log(head);
-        console.log("neck:");
-        console.log(neck);
-        console.log("chest:");
-        console.log(chest);
 
+        //결과물 출력 (몸) 
+        // console.log("======================<head/neck/chest rotation result>========================")
+        // console.log("head:");
+        // console.log(head);
+        // console.log("neck:");
+        // console.log(neck);
+        // console.log("chest:");
+        // console.log(chest);
+
+        console.log("======================<shoulder rotation result>========================")
+        //console.log(Tvrmshbn);
+
+        console.log(keys['leftShoulder_pitch']); 
+        console.log(keys['leftShoulder_yaw']); 
+        console.log(keys['leftShoulder_roll']); 
+        // console.log(getCMV('SHOULDER_RATIO')); 
+
+
+        //각 본별 yaw, pitch, roll 확인 
+        /*
+        internal_counter = internal_counter + 0.01;
+
+        let left_shoulder = Ch.getNormalizedBoneNode(Tvrmshbn.LeftShoulder).rotation;
+        left_shoulder.set(0.0, 0.0, internal_counter);
+
+        let Left_LowerArm = Ch.getNormalizedBoneNode(Tvrmshbn.LeftLowerArm).rotation;
+        Left_LowerArm.set(0.0, 0.0, 0.0);
+
+        let Left_Hand = Ch.getNormalizedBoneNode(Tvrmshbn.LeftHand).rotation;
+        Left_Hand.set(0.0, 0.0, 0.0);
+        */
+
+        //어깨 
+        let left_shoulder = Ch.getNormalizedBoneNode(Tvrmshbn.LeftShoulder).rotation;
+        left_shoulder.set(keys['leftShoulder_pitch'], keys['leftShoulder_yaw'], keys['leftShoulder_roll']);
+
+
+        // left_shoulder.set(radLimit(keys['leftShoulder_pitch'] * getCMV('SHOULDER_RATIO')),
+        //     radLimit(keys['leftShoulder_yaw'] * getCMV('SHOULDER_RATIO')),
+        //     radLimit(keys['leftShoulder_roll'] * getCMV('SHOULDER_RATIO')));
+        
+
+
+        //아래와 같이 하면 들어온다.     
+        // console.log("*********************inside************************")
+        // console.log(keys['test'])
+
+
+
+        // left_shoulder.set(radLimit(keys['leftShoulder_pitch'] * getCMV('SHOULDER_RATIO')),
+        //     radLimit(keys['leftShoulder_yaw'] * getCMV('SHOULDER_RATIO')),
+        //     radLimit(keys['leftShoulder_roll'] * getCMV('SHOULDER_RATIO')));
+
+
+
+        //여기에 오일러 앵글 기반 shoulder, elbow, wrist 값을 추가 
+        /*
+        //어깨 
+        let left_shoulder = Ch.getNormalizedBoneNode(Tvrmshbn.LeftShoulder).rotation;
+        left_shoulder.set(radLimit(keys['leftShoulder_pitch'] * getCMV('SHOULDER_RATIO')),
+            radLimit(keys['leftShoulder_yaw'] * getCMV('SHOULDER_RATIO') + leanRatio),
+            radLimit(keys['leftShoulder_roll'] * getCMV('SHOULDER_RATIO') + tiltRatio));
+        
+        let right_shoulder = Ch.getNormalizedBoneNode(Tvrmshbn.RightShoulder).rotation;
+        right_shoulder.set(radLimit(keys['rightShoulder_pitch'] * getCMV('SHOULDER_RATIO')),
+            radLimit(keys['rightShoulder_yaw'] * getCMV('SHOULDER_RATIO') + leanRatio),
+            radLimit(keys['rightShoulder_roll'] * getCMV('SHOULDER_RATIO') + tiltRatio));
+
+        //팔꿈치 
+        let Left_LowerArm = Ch.getNormalizedBoneNode(Tvrmshbn.LeftLowerArm).rotation;
+        Left_LowerArm.set(radLimit(keys['LeftLowerArm_pitch'] * getCMV('LOWERARM_RATIO')),
+            radLimit(keys['LeftLowerArm_yaw'] * getCMV('LOWERARM_RATIO') + leanRatio),
+            radLimit(keys['LeftLowerArm_roll'] * getCMV('LOWERARM_RATIO') + tiltRatio));
+        
+        let Right_LowerArm = Ch.getNormalizedBoneNode(Tvrmshbn.RightLowerArm).rotation;
+        Right_LowerArm.set(radLimit(keys['RightLowerArm_pitch'] * getCMV('LOWERARM_RATIO')),
+            radLimit(keys['RightLowerArm_yaw'] * getCMV('LOWERARM_RATIO') + leanRatio),
+            radLimit(keys['RightLowerArm_roll'] * getCMV('LOWERARM_RATIO') + tiltRatio));
+
+        //손
+        let Left_Hand = Ch.getNormalizedBoneNode(Tvrmshbn.LeftHand).rotation;
+        Left_Hand.set(radLimit(keys['LeftHand_pitch'] * getCMV('HAND_RATIO')),
+            radLimit(keys['LeftHand_yaw'] * getCMV('HAND_RATIO') + leanRatio),
+            radLimit(keys['LeftHand_roll'] * getCMV('HAND_RATIO') + tiltRatio));
+        
+        let Right_Hand = Ch.getNormalizedBoneNode(Tvrmshbn.RightHand).rotation;
+        Right_Hand.set(radLimit(keys['RightHand_pitch'] * getCMV('HAND_RATIO')),
+            radLimit(keys['RightHand_yaw'] * getCMV('HAND_RATIO') + leanRatio),
+            radLimit(keys['RightHand_roll'] * getCMV('HAND_RATIO') + tiltRatio));
+
+        */      
+
+
+        //======================================================================
         //결과물 출력 (손)
+        //아래 껄 사용하지 않고, 
+        /*
         console.log("=========<arm rotation result>=======")
         // left right arm
         if(getCMV('HAND_TRACKING')){
@@ -204,6 +298,9 @@ function updateBody(keys){
         }else{
             setDefaultPose(currentVrm);
         }
+        */
+        //=====================================================================
+
     }
 }
 
@@ -252,6 +349,10 @@ function updateMood(){
 
 function updateInfo(){
     let info = getInfo();
+    
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    console.log(info); 
+
     updateBody(info);
     updatePosition(info);
     updateBreath();

@@ -96,6 +96,10 @@ function initCM(){
         configManager['POSITION_X_RATIO'] = 0.12;
         configManager['POSITION_Y_RATIO'] = 0.12;
         configManager['POSITION_Z_RATIO'] = 0.12;
+        
+        //추가된 거 
+        configManager['SHOULDER_RATIO'] = 1.0; 
+
     }
     // System Parameters
     configManager['VERSION'] = VERSION;

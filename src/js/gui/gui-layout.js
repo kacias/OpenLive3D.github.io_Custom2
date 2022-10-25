@@ -3,6 +3,7 @@ let sidebar = document.getElementById("thesidebar");
 let moodbar = document.getElementById("themoodbar");
 let layout = document.getElementById("layout");
 let system = document.getElementById("system");
+
 system.onclick = function(){
     console.log("click SYSTEM_IMG");
     if(sidebar.style.display == "none"){
@@ -13,10 +14,12 @@ system.onclick = function(){
         moodbar.style.display = "block";
     }
 };
+
 let systemtext = document.getElementById("systemtext");
 system.onmouseover = function(){
     systemtext.style.color = "#FFFFFFFF";
 };
+
 system.onmouseout = function(){
     if(sidebar.style.display == "none"){
         systemtext.style.color = "#FFFFFF00";
