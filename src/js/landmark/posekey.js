@@ -8,6 +8,7 @@ const PPoI = {
     "wrist": [15, 16],
 };
 
+//테스트용 카운터 
 let internal_counter2 = 0.0; 
 
 
@@ -22,7 +23,7 @@ function getShoulderRot(pose, leftright)
 {
 
     //=======================================================
-    //test용 코드 
+    //1) test용 코드 (자동 돌아가도록 만듦)
     
     // internal_counter2 += 0.1; 
     // if (internal_counter2 > Math.PI)
@@ -35,10 +36,12 @@ function getShoulderRot(pose, leftright)
     //return [0, 0, 0]; 
 
     //=======================================================
-
+    //2) shoulder-elbow로 계산 (잘 안됨)
+    /*
     console.log("++++++++++어깨 위치 계산++++++++++");  
     let l_shoulder = pose["shoulder"][0];
     let r_shoulder = pose["shoulder"][1];
+
 
     console.log("++++++++++팔꿈치 위치 계산++++++++++");  
     let l_elbow = pose["elbow"][0];
@@ -50,18 +53,38 @@ function getShoulderRot(pose, leftright)
     console.log(r_elbow);
 
     console.log("++++++++++어깨 각도 계산++++++++++");  
-    let rollSlope = myslope(l_shoulder[0], l_shoulder[1], l_elbow[0],  l_elbow[1]);
-    console.log(rollSlope);
+    //================================================
 
+    // let rollSlope = myslope(l_shoulder[0], l_shoulder[1], l_elbow[0],  l_elbow[1]);
+    // console.log(rollSlope);
+    // let roll = Math.atan(rollSlope);
+    // console.log(roll);
+    // const degree = roll * 180 / Math.PI // 라디안 -> 디그리 변환
+    // console.log(degree);
+    // return [0, 0, roll];
+
+    */
+
+
+    //=====================================================
+    //3) 양어깨 중심점으로부터의 각도 (되는것 같긴한데 정확하지 않음)
+
+    console.log("++++++++++어깨 위치 계산++++++++++");  
+    let l_shoulder = pose["shoulder"][0];
+    let r_shoulder = pose["shoulder"][1];
+
+    let c_shoulder_x = (pose["shoulder"][0][0] + pose["shoulder"][1][0])/2.0;
+    let c_shoulder_y = (pose["shoulder"][0][1] + pose["shoulder"][1][1])/2.0;
+
+    console.log(c_shoulder_x, c_shoulder_y);
+
+    let rollSlope = myslope(c_shoulder_x, c_shoulder_y, l_shoulder[0],  l_shoulder[1]);
+    console.log(rollSlope);
     let roll = Math.atan(rollSlope);
     console.log(roll);
-
     const degree = roll * 180 / Math.PI // 라디안 -> 디그리 변환
     console.log(degree);
-
-    return [0, 0, roll];
-
-
+    return [0, 0, -roll];
 
 
     //================================================
@@ -85,12 +108,7 @@ function getShoulderRot(pose, leftright)
         pitch -= Math.PI;
     }
     return [roll, pitch + Math.PI / 2, yaw];
-
     */
-
-
-
-
 
     //==========================================
     /*

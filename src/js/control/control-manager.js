@@ -182,12 +182,12 @@ function updateBody(keys){
         // console.log("chest:");
         // console.log(chest);
 
-        console.log("======================<shoulder rotation result>========================")
-        //console.log(Tvrmshbn);
+        // console.log("======================<shoulder rotation result>========================")
+        // //console.log(Tvrmshbn);
 
-        console.log(keys['leftShoulder_pitch']); 
-        console.log(keys['leftShoulder_yaw']); 
-        console.log(keys['leftShoulder_roll']); 
+        // console.log(keys['leftShoulder_pitch']); 
+        // console.log(keys['leftShoulder_yaw']); 
+        // console.log(keys['leftShoulder_roll']); 
         // console.log(getCMV('SHOULDER_RATIO')); 
 
 
@@ -207,13 +207,11 @@ function updateBody(keys){
 
         //어깨 
         let left_shoulder = Ch.getNormalizedBoneNode(Tvrmshbn.LeftShoulder).rotation;
-        left_shoulder.set(radLimit(keys['leftShoulder_pitch']), radLimit(keys['leftShoulder_yaw']), radLimit(keys['leftShoulder_roll']));
+        left_shoulder.set(radLimit(keys['leftShoulder_pitch']) * 5.0, radLimit(keys['leftShoulder_yaw']) * 5.0, radLimit(keys['leftShoulder_roll'])* 5.0);
 
         //엘보 
         //let Left_LowerArm = Ch.getNormalizedBoneNode(Tvrmshbn.LeftLowerArm).rotation;
         //Left_LowerArm.set(radLimit(keys['leftShoulder_pitch']), radLimit(keys['leftShoulder_yaw']), radLimit(keys['leftShoulder_roll']));
-
-
 
 
         // left_shoulder.set(radLimit(keys['leftShoulder_pitch'] * getCMV('SHOULDER_RATIO')),
@@ -383,8 +381,8 @@ function updateMood(){
 function updateInfo(){
     let info = getInfo();
     
-    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    console.log(info); 
+    // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    // console.log(info); 
 
     updateBody(info);
     updatePosition(info);
