@@ -132,9 +132,7 @@ function getTiltLean(shoulder){
     return [tilt, lean * Math.sqrt(Math.abs(lean))];
 }
 
-<<<<<<< HEAD
-//여기에서 동작 정보 계산 
-=======
+
 //===========================================================================================================================================================
 //손 부분 각도만 가져오는 함수 Pose에는 mediapipe에서 가져오는 좌표가 담겨져 있음. 이로부터 pitch, yaw, roll을 계산해서 리턴, 
 //대략 아래와 같은 느낌? 정확하지 않음.  
@@ -159,7 +157,7 @@ function getHandRot(pose, leftright)
 
 //==================================================
 //주요 각도를 mediapipe 값으로부터 맵핑시키는 함수 
->>>>>>> e99dadbf553b3fb58d09b1dc36bc2fc875e52a0f
+
 function pose2Info(pose){
     let keyInfo = {};
     let tl = getTiltLean(pose["shoulder"]);
@@ -172,7 +170,6 @@ function pose2Info(pose){
     keyInfo["rightWristX"] = rwrist[0];
     keyInfo["rightWristY"] = rwrist[1];
 
-<<<<<<< HEAD
     //==================================
     //3개의 회전 정보 추가 
     let lshoulder = getShoulderRot(pose, 0);
@@ -220,14 +217,6 @@ function pose2Info(pose){
     // keyInfo['RightHand_roll']  =  rhand[2];   
 
     //=========================================
-=======
-
-    //여기에 새로운 key 값들을 배정하는 듯 
-    //let lhand = getHandRot(pose, 0);
-    //keys['LeftHand_pitch'] = lhand[0]  
-    //keys['LeftHand_yaw'] = lhand[1]  
-    //keys['LeftHand_roll'] = lhand[2]  
->>>>>>> e99dadbf553b3fb58d09b1dc36bc2fc875e52a0f
 
     return keyInfo;
 }
