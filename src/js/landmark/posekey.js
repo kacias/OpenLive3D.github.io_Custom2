@@ -13,14 +13,28 @@ let internal_counter2 = 0.0;
 function getShoulderRot(pose, leftright)
 {
 
+    //=======================================================
+    //test용 코드 
+    
+    internal_counter2 += 0.1; 
+    if (internal_counter2 > Math.PI)
+    {
+        internal_counter2 = 0.0;
+    }
+    //internal_counter2 = internal_counter2  / Math.PI; 
+    return [0.0, internal_counter2, 0.0];
+    
+    //=======================================================
+
+    //================================================
     /*
     let shoulder = pose["shoulder"][leftright];
-    //let elbow = pose["elbow"][leftright];
+    // let elbow = pose["elbow"][leftright];
     // let pitch = 0.0;
     // let yaw = 0.0;
     // let roll = 0.0;
 
-    console.log("+++++++++++++++++");  
+    console.log("++++++++++어깨 각도 계산++++++++++");  
     console.log(shoulder);
 
     let rollSlope = slope(0, 1, shoulder[1], shoulder[0]);
@@ -35,15 +49,9 @@ function getShoulderRot(pose, leftright)
     return [roll, pitch + Math.PI / 2, yaw];
 
     */
-    internal_counter2 += 0.1; 
 
-    if (internal_counter2 > Math.PI)
-    {
-        internal_counter2 = 0.0;
-    }
-    //internal_counter2 = internal_counter2  / Math.PI; 
 
-    return [0.0, internal_counter2, 0.0];
+
 
 
     //==========================================
@@ -138,28 +146,6 @@ function getTiltLean(shoulder){
     return [tilt, lean * Math.sqrt(Math.abs(lean))];
 }
 
-
-//===========================================================================================================================================================
-//손 부분 각도만 가져오는 함수 Pose에는 mediapipe에서 가져오는 좌표가 담겨져 있음. 이로부터 pitch, yaw, roll을 계산해서 리턴, 
-//대략 아래와 같은 느낌? 정확하지 않음.  
-//이런 스타일로, shoulderRot, ElbowRot 2개의 함수를 추가해야 할 듯. 
-//이 구조가 맞다면 총 3개의 함수만 만들면 되지 않을까 싶음. 
-//총 3개의 함수에서 mediapipe 값으로 yaw, pitch, roll 값을 계산해서, 6개의 bone에 매핑시키는 형태로.
-
-/*
-function getHandRot(pose, leftright)
-{
-
-    let hand = pose["hand"][leftright];
-    let elbow = pose["elbow"][leftright];
-    let x = Math.max(-1, Math.min(1, (hand[0] - elbow[0]) / base));
-    let y = Math.max( 0, Math.min(1, (hand[1] - elbow[1]) / base / 2 + 0.5));
-    let z = +(elbow[2] > hand[2]);
-
-    return [pitch, yaw, roll]; 
-
-}
-*/
 
 //==================================================
 //주요 각도를 mediapipe 값으로부터 맵핑시키는 함수 
