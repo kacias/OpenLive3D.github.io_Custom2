@@ -26,6 +26,14 @@ function getShoulderRot(pose, leftright)
     
     //=======================================================
 
+    console.log("++++++++++어깨 각도 계산++++++++++");  
+    let l_shoulder = pose["shoulder"][0];
+    let r_shoulder = pose["shoulder"][1];
+    console.log(l_shoulder);
+    console.log(r_shoulder);
+
+
+
     //================================================
     /*
     let shoulder = pose["shoulder"][leftright];
