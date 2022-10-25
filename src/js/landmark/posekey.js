@@ -37,6 +37,12 @@ function getShoulderRot(pose, leftright)
     */
     internal_counter2 += 0.1; 
 
+    if (internal_counter2 > Math.PI)
+    {
+        internal_counter2 = 0.0;
+    }
+    //internal_counter2 = internal_counter2  / Math.PI; 
+
     return [0.0, internal_counter2, 0.0];
 
 

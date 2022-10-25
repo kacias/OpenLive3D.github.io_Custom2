@@ -207,7 +207,7 @@ function updateBody(keys){
 
         //어깨 
         let left_shoulder = Ch.getNormalizedBoneNode(Tvrmshbn.LeftShoulder).rotation;
-        left_shoulder.set(keys['leftShoulder_pitch'], keys['leftShoulder_yaw'], keys['leftShoulder_roll']);
+        left_shoulder.set(radLimit(keys['leftShoulder_pitch']), radLimit(keys['leftShoulder_yaw']), radLimit(keys['leftShoulder_roll']));
 
 
         // left_shoulder.set(radLimit(keys['leftShoulder_pitch'] * getCMV('SHOULDER_RATIO')),
