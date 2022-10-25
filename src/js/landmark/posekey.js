@@ -10,27 +10,57 @@ const PPoI = {
 
 let internal_counter2 = 0.0; 
 
+
+//점1, 점2 
+function myslope(p1_x, p1_y, p2_x, p2_y){
+    return ((p2_y - p1_y) / (p2_x - p1_x));
+}
+
+
+
 function getShoulderRot(pose, leftright)
 {
 
     //=======================================================
     //test용 코드 
     
-    internal_counter2 += 0.1; 
-    if (internal_counter2 > Math.PI)
-    {
-        internal_counter2 = 0.0;
-    }
-    //internal_counter2 = internal_counter2  / Math.PI; 
-    return [0.0, internal_counter2, 0.0];
+    // internal_counter2 += 0.1; 
+    // if (internal_counter2 > Math.PI)
+    // {
+    //     internal_counter2 = 0.0;
+    // }
+    // //internal_counter2 = internal_counter2  / Math.PI; 
+    // return [0.0, internal_counter2, 0.0];
     
+    //return [0, 0, 0]; 
+
     //=======================================================
 
-    console.log("++++++++++어깨 각도 계산++++++++++");  
+    console.log("++++++++++어깨 위치 계산++++++++++");  
     let l_shoulder = pose["shoulder"][0];
     let r_shoulder = pose["shoulder"][1];
+
+    console.log("++++++++++팔꿈치 위치 계산++++++++++");  
+    let l_elbow = pose["elbow"][0];
+    let r_elbow = pose["elbow"][1];
+
     console.log(l_shoulder);
     console.log(r_shoulder);
+    console.log(l_elbow);
+    console.log(r_elbow);
+
+    console.log("++++++++++어깨 각도 계산++++++++++");  
+    let rollSlope = myslope(l_shoulder[0], l_shoulder[1], l_elbow[0],  l_elbow[1]);
+    console.log(rollSlope);
+
+    let roll = Math.atan(rollSlope);
+    console.log(roll);
+
+    const degree = roll * 180 / Math.PI // 라디안 -> 디그리 변환
+    console.log(degree);
+
+    return [0, 0, roll];
+
 
 
 
@@ -103,8 +133,11 @@ function getShoulderRot(pose, leftright)
 function getElbowRot(pose, leftright)
 {
 
+    
 
-    return [pitch, yaw, roll]; 
+
+
+    //return [pitch, yaw, roll]; 
 
 }
 

@@ -209,6 +209,12 @@ function updateBody(keys){
         let left_shoulder = Ch.getNormalizedBoneNode(Tvrmshbn.LeftShoulder).rotation;
         left_shoulder.set(radLimit(keys['leftShoulder_pitch']), radLimit(keys['leftShoulder_yaw']), radLimit(keys['leftShoulder_roll']));
 
+        //엘보 
+        //let Left_LowerArm = Ch.getNormalizedBoneNode(Tvrmshbn.LeftLowerArm).rotation;
+        //Left_LowerArm.set(radLimit(keys['leftShoulder_pitch']), radLimit(keys['leftShoulder_yaw']), radLimit(keys['leftShoulder_roll']));
+
+
+
 
         // left_shoulder.set(radLimit(keys['leftShoulder_pitch'] * getCMV('SHOULDER_RATIO')),
         //     radLimit(keys['leftShoulder_yaw'] * getCMV('SHOULDER_RATIO')),
