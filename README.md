@@ -39,7 +39,7 @@ Beta-1.1.X:
  - Hand update debug
 
 
-minimized_version:
+minimized_version (Branch):
 - 전체 코드에서 몸 추적을 제외하고 모두 불성활화 시킴 
 - 얼굴 탐지 불활성화 
 - pose에서 손 탐지 불활성화 
