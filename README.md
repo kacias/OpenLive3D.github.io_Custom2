@@ -37,3 +37,10 @@ The project aims to connect the half-body movement with facial landmarks to the 
 Beta-1.1.X:
  - Holistic in web worker (another thread)
  - Hand update debug
+
+
+minimized_version:
+- 전체 코드에서 몸 추적을 제외하고 모두 불성활화 시킴 
+- 얼굴 탐지 불활성화 
+- pose에서 손 탐지 불활성화 
+- UI 불활성화(?)
